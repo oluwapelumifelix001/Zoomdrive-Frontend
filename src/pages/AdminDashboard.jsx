@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import img from '../assets/cgk.jpg';
-import Footer from '../components/Footer';
+import Footer from '../Components/Footer';
 
 // ==============================================================================
 // --- API Configuration - MUST BE UPDATED ---
