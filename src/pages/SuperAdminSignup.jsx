@@ -13,7 +13,7 @@ const SuperAdminSignup = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
-    const SUPERADMIN_SIGNUP_URL = 'http://localhost:5000/users/superadmin/signup'; 
+    const SUPERADMIN_SIGNUP_URL = 'https://zoomdrive-backend.onrender.com/users/superadmin/signup'; 
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

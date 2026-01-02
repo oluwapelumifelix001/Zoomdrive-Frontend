@@ -6,7 +6,7 @@ const NotFound = () => {
     return (
         <>
             <PremiumNavbar />
-            
+
             <div>
                 <section className="min-h-screen flex items-center z-0 justify-center bg-gray-50 dark:bg-gray-900 py-10 px-4 sm:px-6 lg:px-6 mt-16 ">
                     <div className="max-w-md w-full space-y-8 text-center p-10 bg-white dark:bg-gray-800 rounded-xl shadow-2xl">
@@ -28,12 +28,12 @@ const NotFound = () => {
                             <ul className="list-none p-0 space-y-2">
                                 <li>
                                     <a href="/" className="block w-full py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out dark:focus:ring-offset-gray-900">
-                                         Go to Our Home Page
+                                        Go to Our Home Page
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/fleet" className="block w-full py-3 px-4 border border-indigo-500 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out dark:bg-gray-700 dark:text-indigo-400 dark:hover:bg-gray-600 dark:border-indigo-400">
-                                         Browse Our Fleet
+                                        Browse Our Fleet
                                     </a>
                                 </li>
                             </ul>

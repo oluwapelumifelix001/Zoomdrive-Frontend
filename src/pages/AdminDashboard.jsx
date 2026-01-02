@@ -9,25 +9,18 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import img from '../assets/cgk.jpg';
 import Footer from '../Components/Footer';
 
-// ==============================================================================
-// --- API Configuration - MUST BE UPDATED ---
-// !!! IMPORTANT: Replace 'http://localhost:5000' with the actual public base URL of your 
-// deployed Node.js/Express API. 'localhost' will not work in this environment.
-// ==============================================================================
-const API_URL_BASE = 'http://localhost:5000';
-const ROUTER_PREFIX = '/users'; // Your Express router prefix: app.use('/users', userRoutes);
 
-// --- Specific Endpoint URLs ---
+const API_URL_BASE = 'https://zoomdrive-backend.onrender.com';
+const ROUTER_PREFIX = '/users';
+
 const GET_CARS_URL = `${API_URL_BASE}${ROUTER_PREFIX}/getCar`;
 const UPDATE_CAR_URL = `${API_URL_BASE}${ROUTER_PREFIX}/updateCar`;
-const CREATE_CAR_URL = `${API_URL_BASE}${ROUTER_PREFIX}/newCar`; // Endpoint for new car creation
+const CREATE_CAR_URL = `${API_URL_BASE}${ROUTER_PREFIX}/newCar`;
 
 const STATUS_OPTIONS = ['Available', 'Sold', 'Pending', 'Service'];
 
 
-// --- Utility Functions ---
 
-// Exponential backoff logic for API calls
 
 
 
@@ -37,7 +30,6 @@ const apiCallWithRetry = async (url, options = {}, retries = 3) => {
             const response = await fetch(url, options);
 
             if (response.status === 401 || response.status === 403) {
-                // If authorization fails, stop retrying immediately
                 throw new Error("Authorization failed. Ensure your token is valid and the API URL is correct.");
             }
 
@@ -59,7 +51,7 @@ const apiCallWithRetry = async (url, options = {}, retries = 3) => {
     }
 };
 
-// --- Sub Components for Live Inventory ---
+
 
 const StatusBadge = ({ status }) => {
     let color = 'bg-gray-200 text-gray-800';
@@ -70,7 +62,6 @@ const StatusBadge = ({ status }) => {
     return <span className={`px-3 py-1 text-xs font-semibold rounded-full ${color}`}>{status}</span>;
 };
 
-// Component for a single editable row (Interacts with UPDATE_CAR_URL)
 const EditableCarRow = ({ car, authToken, fetchInventory }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -85,12 +76,12 @@ const EditableCarRow = ({ car, authToken, fetchInventory }) => {
         setStatusMessage(null);
         try {
             const payload = {
-                id: car._id, // Assumes the MongoDB ID is stored in the car object as _id
+                id: car._id,
                 price: Number(editableData.price),
                 status: editableData.status
             };
 
-            // Basic validation
+            
             if (payload.price <= 0) {
                 throw new Error("Price must be a positive number.");
             }

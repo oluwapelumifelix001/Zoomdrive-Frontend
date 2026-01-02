@@ -66,7 +66,7 @@ const PaymentPage = () => {
             const actualCarId = car._id || car.id;
             
             // 2. Save the booking to your database
-            const response = await fetch('http://localhost:5000/users/bookings', {
+            const response = await fetch('https://zoomdrive-backend.onrender.com/users/bookings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

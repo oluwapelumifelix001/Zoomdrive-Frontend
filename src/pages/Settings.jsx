@@ -33,7 +33,7 @@ const navigate = useNavigate();
             const token = localStorage.getItem('authToken');
             if (!token) return;
             try {
-                const response = await fetch('http://localhost:5000/users/dashboard', {
+                const response = await fetch('https://zoomdrive-backend.onrender.com/users/dashboard', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (response.ok) {

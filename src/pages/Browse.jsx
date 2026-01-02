@@ -129,42 +129,42 @@ const BrowseCarsPage = () => {
 
     const isActive = (path) => location.pathname === path;
 
-useEffect(() => {
-    const fetchDashboard = async () => {
-        const token = localStorage.getItem('authToken');
-        if (!token) return;
-        
-        try {
-            const response = await fetch('http://localhost:5000/users/dashboard', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            
-            if (response.ok) {
-                const data = await response.json();
-                setUserName(data.userName);
-            }
-        } catch (error) {
-            console.error("Dashboard fetch error:", error);
-        } // <--- Added this brace
-    }; // <--- Added this brace
+    useEffect(() => {
+        const fetchDashboard = async () => {
+            const token = localStorage.getItem('authToken');
+            if (!token) return;
 
-    fetchDashboard();
-}, []);
-        const verifyToken = () => {
+            try {
+                const response = await fetch('https://zoomdrive-backend.onrender.com/users/dashboard', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setUserName(data.userName);
+                }
+            } catch (error) {
+                console.error("Dashboard fetch error:", error);
+            } // <--- Added this brace
+        }; // <--- Added this brace
+
+        fetchDashboard();
+    }, []);
+    const verifyToken = () => {
         const token = localStorage.getItem('authToken');
-        if(!token){
+        if (!token) {
             navigate('/login');
         }
     }
-verifyToken();
+    verifyToken();
 
 
 
 
-const handleLogout = () => {   
-    localStorage.removeItem('authToken');
-    window.location.href = '/login';
-};
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        window.location.href = '/login';
+    };
 
     const handleConfirmBooking = (totalAmount, totalDays) => {
         // We send the car details and the calculated price to the payment route
@@ -212,10 +212,10 @@ const handleLogout = () => {
                     ))}
                 </nav>
                 <div className="pt-6 border-t border-white/10 space-y-2">
-                    <button className="flex items-center space-x-3 p-4 rounded-xl text-red-400 w-full hover:bg-red-500/20 transition-all"onClick={handleLogout} ><LogOut className="w-5 h-5" /><span>Logout</span></button>
+                    <button className="flex items-center space-x-3 p-4 rounded-xl text-red-400 w-full hover:bg-red-500/20 transition-all" onClick={handleLogout} ><LogOut className="w-5 h-5" /><span>Logout</span></button>
                 </div>
             </aside>
-                   
+
             <header className="bg-white/70 backdrop-blur-2xl border-b border-slate-200/50 px-4 py-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
                 <div className="flex items-center gap-4">
                     <button className="p-2.5 bg-blue-600 text-white rounded-xl" onClick={() => setIsSidebarOpen(true)}><Menu className="w-5 h-5" /></button>

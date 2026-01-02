@@ -32,7 +32,7 @@ const UltimateAdminLoginPage = () => {
     const ADMIN_IMAGE_URL = "https://images.unsplash.com/photo-1624006600306-cb489b3dcbfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHB1cnBsZSUyMGV4b3RpYyUyMGNhcnN8ZW58MHx8MHx8fDA%3D";
 
     // Updated API Endpoint for Admin Login
-    const API_ENDPOINT = 'http://localhost:5000/users/admin/login';
+    const API_ENDPOINT = 'https://zoomdrive-backend.onrender.com/users/admin/login';
     const navigate = useNavigate();
 
     // Standard Login State

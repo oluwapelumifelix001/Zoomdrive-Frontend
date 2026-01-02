@@ -10,7 +10,7 @@ const fetchUserProfile = async () => {
     }
 
     try {
-        const profileResponse = await axios.get('http://localhost:5000/users/profile', {
+        const profileResponse = await axios.get('https://zoomdrive-backend.onrender.com/users/profile', {
             headers: {
                 // 2. Attach the token in the required format: "Bearer <token>"
                 'Authorization': `Bearer ${token}` 

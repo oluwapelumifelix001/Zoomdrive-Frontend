@@ -20,7 +20,7 @@ const SuperAdminDashboard = () => {
 
         // 1. Fetch Stats and Bookings
         const statsRes = await axios.get('http://localhost:5000/users/superadmin/stats', config);
-        const bookingsRes = await axios.get('http://localhost:5000/users/superadmin/allBookings', config);
+        const bookingsRes = await axios.get('https://zoomdrive-backend.onrender.com/users/superadmin/allBookings', config);
 
         const allBookings = bookingsRes.data;
 
