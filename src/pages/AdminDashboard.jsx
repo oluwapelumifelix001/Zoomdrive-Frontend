@@ -314,7 +314,7 @@ const SettingsView = ({ authToken, setAdminName }) => {
     useEffect(() => {
         const fetchCurrentAdmin = async () => {
             try {
-                const response = await fetch('http://localhost:5000/users/admin/dashboard', {
+                const response = await fetch('https://zoomdrive-backend.onrender.com/users/admin/dashboard', {
                     headers: { 'Authorization': `Bearer ${authToken}` }
                 });
                 const data = await response.json();
