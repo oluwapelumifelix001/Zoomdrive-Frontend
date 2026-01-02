@@ -118,7 +118,7 @@ const PremiumNavbar = () => {
 
                 {/* Primary CTA for mobile */}
                 <Link
-                    to="/admin/Signup"
+                    to="/admin/home"
                     className="block px-4 py-3 text-center bg-blue-600 text-white font-semibold hover:bg-blue-700 transition duration-150 ease-in-out"
                     onClick={() => setIsOpen(false)}
                 >
