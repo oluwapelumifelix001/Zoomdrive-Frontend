@@ -58,7 +58,7 @@ const handleApprove = async (bookingId) => {
     try {
       const token = localStorage.getItem('superAdminToken');
       await axios.patch(
-        `http://localhost:5000/users/superadmin/approveBooking/${bookingId}`, 
+        `https://zoomdrive-backend.onrender.com/users/superadmin/approveBooking/${bookingId}`, 
         { status: 'Approved' }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );
