@@ -25,8 +25,7 @@ const Toast = ({ message, isVisible, onClose }) => {
 
 
 // ===================================
-// ADMIN LOGIN PAGE COMPONENT (Ultra-Compact and Themed)
-// ===================================
+
 const UltimateAdminLoginPage = () => {
     // Retaining professional image for admin side
     const ADMIN_IMAGE_URL = "https://images.unsplash.com/photo-1624006600306-cb489b3dcbfa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHB1cnBsZSUyMGV4b3RpYyUyMGNhcnN8ZW58MHx8MHx8fDA%3D";
@@ -75,7 +74,6 @@ const UltimateAdminLoginPage = () => {
             const { token } = response.data;
             if (token) {
                 localStorage.setItem('adminAuthToken', token); // Store admin token separately
-                console.log("Admin Token saved:", token);
             }
 
             setShowToast(true);
@@ -152,7 +150,7 @@ const UltimateAdminLoginPage = () => {
                     {/* API Error Box */}
                     {apiError && (
                         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2.5 rounded-xl mb-4 text-sm font-medium transition-opacity duration-500">
-                            **Error:** {apiError}
+                            Error: {apiError}
                         </div>
                     )}
 

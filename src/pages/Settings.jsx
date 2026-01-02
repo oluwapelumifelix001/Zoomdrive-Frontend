@@ -59,7 +59,7 @@ const navigate = useNavigate();
         setFeedback({ type: '', msg: '' });
 
         try {
-            const response = await fetch('http://localhost:5000/users/updateProfile', {
+            const response = await fetch('https://zoomdrive-backend.onrender.com/users/updateProfile', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

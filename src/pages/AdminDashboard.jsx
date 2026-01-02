@@ -299,7 +299,6 @@ const LiveInventoryView = ({ authToken }) => {
     );
 };
 
-// Add the props here so the component can use them
 const SettingsView = ({ authToken, setAdminName }) => {
 
     const [profile, setProfile] = useState({
@@ -339,7 +338,7 @@ const SettingsView = ({ authToken, setAdminName }) => {
         setFeedback({ type: '', msg: '' });
 
         try {
-            const response = await fetch('http://localhost:5000/users/admin/updateProfile', {
+            const response = await fetch('https://zoomdrive-backend.onrender.com/users/admin/updateProfile', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
