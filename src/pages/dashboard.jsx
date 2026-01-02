@@ -210,7 +210,7 @@ const Dashboard = () => {
             if (!token) return;
 
             try {
-                const response = await fetch('http://localhost:5000/users/dashboard', {
+                const response = await fetch('https://zoomdrive-backend.onrender.com/users/dashboard', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
