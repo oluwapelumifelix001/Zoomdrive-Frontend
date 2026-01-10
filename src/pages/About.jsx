@@ -5,13 +5,13 @@ import {
     ArrowRight, Star, Download, Smartphone, Layout, Zap as Bolt
 } from 'lucide-react';
 import PremiumNavbar from '../Components/PremiumNavbar';
-import { usePWA } from '../Components/PWAHandler';
 import Footer from '../Components/Footer';
+import { usePWA } from '../Components/PWAHandler.jsx';
 
 const AboutUsPage = () => {
     /* --- INSTALLATION LOGIC --- */
-    const { isVisible, installApp } = usePWA()
 
+const { isVisible, installApp } = usePWA();
     const stats = [
         { label: 'Happy Clients', value: '10K+', icon: Users },
         { label: 'Luxury Fleet', value: '500+', icon: Zap },
@@ -57,12 +57,29 @@ const AboutUsPage = () => {
                                 <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Faster booking & tracking</p>
                             </div>
                         </div>
-                        <button
-                            onClick={handleInstall}
-                            className="bg-blue-600 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition-colors shadow-md"
-                        >
-                            Install
-                        </button>
+                     <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
+    <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        {/* Step 1 */}
+        <div className="flex flex-col items-center">
+            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">1</div>
+            <p className="text-gray-300">Tap the <strong>three dots (⋮)</strong> or <strong>Share</strong> icon in your browser.</p>
+        </div>
+
+        {/* Step 2 */}
+        <div className="flex flex-col items-center">
+            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">2</div>
+            <p className="text-gray-300">Select <strong>"Install App"</strong> or <strong>"Add to Home Screen"</strong>.</p>
+        </div>
+
+        {/* Step 3 */}
+        <div className="flex flex-col items-center">
+            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">3</div>
+            <p className="text-gray-300">Open <strong>ZoomDrive</strong> from your home screen like a native app.</p>
+        </div>
+    </div>
+</div>
                     </div>
                 </div>
             )}
@@ -98,15 +115,6 @@ const AboutUsPage = () => {
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </button>
 
-                                {isVisible && (
-                                    <button
-                                        onClick={handleInstall}
-                                        className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-2xl font-bold text-base shadow-lg hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
-                                    >
-                                        <Download className="w-5 h-5" />
-                                        Install App
-                                    </button>
-                                )}
                             </div>
                         </div>
 
@@ -199,10 +207,29 @@ const AboutUsPage = () => {
                             </div>
 
                             <div className="pt-8 w-full flex flex-col items-center gap-4">
-                                <button onClick={installApp} className="group relative bg-blue-600 hover:bg-blue-500 text-white px-12 py-6 rounded-2xl font-black text-xl transition-all transform hover:scale-105 flex items-center gap-4 shadow-[0_20px_50px_rgba(37,99,235,0.3)]">
-                                    <Download className="w-6 h-6 group-hover:animate-bounce" />
-                                    {isVisible ? 'Install ZoomDrive App' : 'App Status: Ready'}
-                                </button>
+                              <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
+    <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        {/* Step 1 */}
+        <div className="flex flex-col items-center">
+            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">1</div>
+            <p className="text-gray-300">Tap the <strong>three dots (⋮)</strong> or <strong>Share</strong> icon in your browser.</p>
+        </div>
+
+        {/* Step 2 */}
+        <div className="flex flex-col items-center">
+            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">2</div>
+            <p className="text-gray-300">Select <strong>"Install App"</strong> or <strong>"Add to Home Screen"</strong>.</p>
+        </div>
+
+        {/* Step 3 */}
+        <div className="flex flex-col items-center">
+            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">3</div>
+            <p className="text-gray-300">Open <strong>ZoomDrive</strong> from your home screen like a native app.</p>
+        </div>
+    </div>
+</div>
                                 {!isVisible ? (
                                     <p className="text-gray-500 text-xs font-bold uppercase tracking-widest animate-pulse">App already installed or using an unsupported browser</p>
                                 ) : (
