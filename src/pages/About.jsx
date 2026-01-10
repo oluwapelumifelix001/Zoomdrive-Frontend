@@ -11,7 +11,7 @@ import { usePWA } from '../Components/PWAHandler.jsx';
 const AboutUsPage = () => {
     /* --- INSTALLATION LOGIC --- */
 
-const { isVisible, installApp } = usePWA();
+    const { isVisible, installApp } = usePWA();
     const stats = [
         { label: 'Happy Clients', value: '10K+', icon: Users },
         { label: 'Luxury Fleet', value: '500+', icon: Zap },
@@ -57,29 +57,9 @@ const { isVisible, installApp } = usePWA();
                                 <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Faster booking & tracking</p>
                             </div>
                         </div>
-                     <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
-    <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
-    
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-        {/* Step 1 */}
-        <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">1</div>
-            <p className="text-gray-300">Tap the <strong>three dots (⋮)</strong> or <strong>Share</strong> icon in your browser.</p>
-        </div>
-
-        {/* Step 2 */}
-        <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">2</div>
-            <p className="text-gray-300">Select <strong>"Install App"</strong> or <strong>"Add to Home Screen"</strong>.</p>
-        </div>
-
-        {/* Step 3 */}
-        <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">3</div>
-            <p className="text-gray-300">Open <strong>ZoomDrive</strong> from your home screen like a native app.</p>
-        </div>
-    </div>
-</div>
+                        <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
+                            <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
+                        </div>
                     </div>
                 </div>
             )}
@@ -207,29 +187,29 @@ const { isVisible, installApp } = usePWA();
                             </div>
 
                             <div className="pt-8 w-full flex flex-col items-center gap-4">
-                              <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
-    <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
-    
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-        {/* Step 1 */}
-        <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">1</div>
-            <p className="text-gray-300">Tap the <strong>three dots (⋮)</strong> or <strong>Share</strong> icon in your browser.</p>
-        </div>
+                                <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
+                                    <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
 
-        {/* Step 2 */}
-        <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">2</div>
-            <p className="text-gray-300">Select <strong>"Install App"</strong> or <strong>"Add to Home Screen"</strong>.</p>
-        </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                                        {/* Step 1 */}
+                                        <div className="flex flex-col items-center">
+                                            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">1</div>
+                                            <p className="text-gray-300">Tap the <strong>three dots (⋮)</strong> or <strong>Share</strong> icon in your browser.</p>
+                                        </div>
 
-        {/* Step 3 */}
-        <div className="flex flex-col items-center">
-            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">3</div>
-            <p className="text-gray-300">Open <strong>ZoomDrive</strong> from your home screen like a native app.</p>
-        </div>
-    </div>
-</div>
+                                        {/* Step 2 */}
+                                        <div className="flex flex-col items-center">
+                                            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">2</div>
+                                            <p className="text-gray-300">Select <strong>"Install App"</strong> or <strong>"Add to Home Screen"</strong>.</p>
+                                        </div>
+
+                                        {/* Step 3 */}
+                                        <div className="flex flex-col items-center">
+                                            <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mb-3">3</div>
+                                            <p className="text-gray-300">Open <strong>ZoomDrive</strong> from your home screen like a native app.</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 {!isVisible ? (
                                     <p className="text-gray-500 text-xs font-bold uppercase tracking-widest animate-pulse">App already installed or using an unsupported browser</p>
                                 ) : (
