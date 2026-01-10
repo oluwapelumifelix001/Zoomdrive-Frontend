@@ -21,14 +21,13 @@ import SuperAdminLogin from './pages/SuperAdminLogin.jsx'
 import SuperAdminDashboard from './pages/SuperAdminDashboard.jsx'
 import NotFound from './pages/NotFound.jsx'
 import ScrolltoTop from './Components/ScrolltoTop.jsx'
+import PWAProvider from './Components/PWAHandler.jsx'
 import { Scroll } from 'lucide-react'
-
 
 const App = () => {
   return (
     <>
-
-
+      <PWAProvider>
         <ScrolltoTop>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -52,6 +51,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       </ScrolltoTop>
+</PWAProvider>
 
     </>
   )

@@ -1,48 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ShieldCheck, Zap, Clock, Users, Award, MapPin, 
-  ArrowRight, Star, Download, Smartphone, Layout, Zap as Bolt 
+import {
+    ShieldCheck, Zap, Clock, Users, Award, MapPin,
+    ArrowRight, Star, Download, Smartphone, Layout, Zap as Bolt
 } from 'lucide-react';
 import PremiumNavbar from '../Components/PremiumNavbar';
+import { usePWA } from '../Components/PWAHandler';
 import Footer from '../Components/Footer';
 
 const AboutUsPage = () => {
     /* --- INSTALLATION LOGIC --- */
-    const [deferredPrompt, setDeferredPrompt] = useState(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const handleBeforeInstall = (e) => {
-            e.preventDefault();
-            setDeferredPrompt(e);
-            setIsVisible(true);
-        };
-
-        const handleAppInstalled = () => {
-            setIsVisible(false);
-            setDeferredPrompt(null);
-            console.log('ZoomDrive PWA installed successfully');
-        };
-
-        window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-        window.addEventListener('appinstalled', handleAppInstalled);
-
-        return () => {
-            window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
-            window.removeEventListener('appinstalled', handleAppInstalled);
-        };
-    }, []);
-
-    const handleInstall = async () => {
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            setDeferredPrompt(null);
-            setIsVisible(false);
-        }
-    };
+    const { isVisible, installApp } = usePWA()
 
     const stats = [
         { label: 'Happy Clients', value: '10K+', icon: Users },
@@ -89,7 +57,7 @@ const AboutUsPage = () => {
                                 <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Faster booking & tracking</p>
                             </div>
                         </div>
-                        <button 
+                        <button
                             onClick={handleInstall}
                             className="bg-blue-600 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition-colors shadow-md"
                         >
@@ -104,7 +72,7 @@ const AboutUsPage = () => {
                 <section className="relative py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10" />
                     <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-                    
+
                     <div className="relative max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-6">
                             <div className="inline-flex items-center gap-3 bg-blue-600/10 px-4 py-2 rounded-full border border-blue-200">
@@ -120,7 +88,7 @@ const AboutUsPage = () => {
                             </h1>
 
                             <p className="text-lg text-gray-600 font-medium leading-relaxed max-w-2xl">
-                                Born from a passion for driving and a frustration with outdated rental experiences, 
+                                Born from a passion for driving and a frustration with outdated rental experiences,
                                 Zoomdrive was created to bring the thrill of luxury motoring to everyone.
                             </p>
 
@@ -131,7 +99,7 @@ const AboutUsPage = () => {
                                 </button>
 
                                 {isVisible && (
-                                    <button 
+                                    <button
                                         onClick={handleInstall}
                                         className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-2xl font-bold text-base shadow-lg hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
                                     >
@@ -144,7 +112,7 @@ const AboutUsPage = () => {
 
                         <div className="relative">
                             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-3xl blur-3xl" />
-                            <img 
+                            <img
                                 src="https://images.unsplash.com/photo-1701985739263-7c2f6015f270?q=80&w=872&auto=format&fit=crop"
                                 alt="Luxury car fleet"
                                 className="relative rounded-3xl shadow-2xl object-cover w-full h-[500px] border-8 border-white/50"
@@ -210,8 +178,8 @@ const AboutUsPage = () => {
                             <h2 className="text-4xl lg:text-6xl font-black text-white leading-tight">ZoomDrive in Your Pocket.</h2>
 
                             <p className="text-gray-400 text-lg lg:text-xl font-medium leading-relaxed">
-                                Install our official web app for the fastest booking experience yet. 
-                                Enjoy real-time fleet updates, instant car tracking, and 
+                                Install our official web app for the fastest booking experience yet.
+                                Enjoy real-time fleet updates, instant car tracking, and
                                 <span className="text-blue-400"> exclusive member-only pricing</span> directly from your home screen.
                             </p>
 
@@ -231,7 +199,7 @@ const AboutUsPage = () => {
                             </div>
 
                             <div className="pt-8 w-full flex flex-col items-center gap-4">
-                                <button onClick={handleInstall} className="group relative bg-blue-600 hover:bg-blue-500 text-white px-12 py-6 rounded-2xl font-black text-xl transition-all transform hover:scale-105 flex items-center gap-4 shadow-[0_20px_50px_rgba(37,99,235,0.3)]">
+                                <button onClick={installApp} className="group relative bg-blue-600 hover:bg-blue-500 text-white px-12 py-6 rounded-2xl font-black text-xl transition-all transform hover:scale-105 flex items-center gap-4 shadow-[0_20px_50px_rgba(37,99,235,0.3)]">
                                     <Download className="w-6 h-6 group-hover:animate-bounce" />
                                     {isVisible ? 'Install ZoomDrive App' : 'App Status: Ready'}
                                 </button>
