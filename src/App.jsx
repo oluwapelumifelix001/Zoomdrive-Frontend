@@ -20,6 +20,8 @@ import AdminProfile from './pages/AdminProfile.jsx'
 import SuperAdminLogin from './pages/SuperAdminLogin.jsx'
 import SuperAdminDashboard from './pages/SuperAdminDashboard.jsx'
 import NotFound from './pages/NotFound.jsx'
+import ScrolltoTop from './Components/ScrolltoTop.jsx'
+import { Scroll } from 'lucide-react'
 
 
 const App = () => {
@@ -27,6 +29,7 @@ const App = () => {
     <>
 
 
+        <ScrolltoTop>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
@@ -47,8 +50,8 @@ const App = () => {
         <Route path="/superadmin/dashboard" element={<SuperAdminDashboard />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="*" element={<NotFound />} />
-
       </Routes>
+      </ScrolltoTop>
 
     </>
   )

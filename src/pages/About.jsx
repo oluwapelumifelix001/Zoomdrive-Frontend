@@ -1,10 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Zap, Clock, Users, Award, MapPin, ArrowRight, Star } from 'lucide-react';
+import { 
+  ShieldCheck, Zap, Clock, Users, Award, MapPin, 
+  ArrowRight, Star, Download, Smartphone, Layout, Zap as Bolt 
+} from 'lucide-react';
 import PremiumNavbar from '../Components/PremiumNavbar';
 import Footer from '../Components/Footer';
 
 const AboutUsPage = () => {
+    /* --- INSTALLATION LOGIC --- */
+    const [deferredPrompt, setDeferredPrompt] = useState(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const handleBeforeInstall = (e) => {
+            e.preventDefault();
+            setDeferredPrompt(e);
+            setIsVisible(true);
+        };
+
+        const handleAppInstalled = () => {
+            setIsVisible(false);
+            setDeferredPrompt(null);
+            console.log('ZoomDrive PWA installed successfully');
+        };
+
+        window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+        window.addEventListener('appinstalled', handleAppInstalled);
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+            window.removeEventListener('appinstalled', handleAppInstalled);
+        };
+    }, []);
+
+    const handleInstall = async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            setDeferredPrompt(null);
+            setIsVisible(false);
+        }
+    };
+
     const stats = [
         { label: 'Happy Clients', value: '10K+', icon: Users },
         { label: 'Luxury Fleet', value: '500+', icon: Zap },
@@ -36,13 +75,36 @@ const AboutUsPage = () => {
     return (
         <>
             <PremiumNavbar />
+
+            {/* FLOATING INSTALL NOTIFICATION */}
+            {isVisible && (
+                <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-md animate-bounce">
+                    <div className="bg-white/80 backdrop-blur-2xl border border-blue-200 p-4 rounded-3xl shadow-[0_20px_50px_rgba(37,99,235,0.3)] flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-blue-600 p-2 rounded-2xl shadow-lg">
+                                <Smartphone className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                                <p className="text-sm font-black text-gray-900 leading-none">Get ZoomDrive App</p>
+                                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Faster booking & tracking</p>
+                            </div>
+                        </div>
+                        <button 
+                            onClick={handleInstall}
+                            className="bg-blue-600 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition-colors shadow-md"
+                        >
+                            Install
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10" />
                     <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000" />
-
+                    
                     <div className="relative max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-6">
                             <div className="inline-flex items-center gap-3 bg-blue-600/10 px-4 py-2 rounded-full border border-blue-200">
@@ -59,29 +121,34 @@ const AboutUsPage = () => {
 
                             <p className="text-lg text-gray-600 font-medium leading-relaxed max-w-2xl">
                                 Born from a passion for driving and a frustration with outdated rental experiences, 
-                                Zoomdrive was created to bring the thrill of luxury motoring to everyone — 
-                                without the hassle.
+                                Zoomdrive was created to bring the thrill of luxury motoring to everyone.
                             </p>
 
-                            <div className="pt-4">
+                            <div className="flex flex-wrap gap-4 pt-4">
                                 <button className="group bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-bold text-base shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 transition-all duration-300 flex items-center gap-2">
                                     Explore Our Story
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </button>
+
+                                {isVisible && (
+                                    <button 
+                                        onClick={handleInstall}
+                                        className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-2xl font-bold text-base shadow-lg hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
+                                    >
+                                        <Download className="w-5 h-5" />
+                                        Install App
+                                    </button>
+                                )}
                             </div>
                         </div>
 
                         <div className="relative">
                             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-3xl blur-3xl" />
                             <img 
-                                src="https://images.unsplash.com/photo-1701985739263-7c2f6015f270?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                alt="Luxury car fleet at sunset"
+                                src="https://images.unsplash.com/photo-1701985739263-7c2f6015f270?q=80&w=872&auto=format&fit=crop"
+                                alt="Luxury car fleet"
                                 className="relative rounded-3xl shadow-2xl object-cover w-full h-[500px] border-8 border-white/50"
                             />
-                            <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-lg px-6 py-4 rounded-3xl shadow-2xl">
-                                <p className="text-3xl font-black text-gray-900">500+</p>
-                                <p className="text-gray-600 font-bold">Premium Vehicles Ready</p>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -91,10 +158,7 @@ const AboutUsPage = () => {
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                             {stats.map((stat, i) => (
-                                <div 
-                                    key={i}
-                                    className="group bg-white/70 backdrop-blur-xl rounded-3xl p-8 text-center shadow-xl border border-white/50 hover:shadow-2xl hover:scale-105 transition-all duration-500"
-                                >
+                                <div key={i} className="group bg-white/70 backdrop-blur-xl rounded-3xl p-8 text-center shadow-xl border border-white/50 hover:shadow-2xl hover:scale-105 transition-all duration-500">
                                     <div className={`inline-flex p-5 rounded-3xl mb-5 bg-gradient-to-br ${i % 2 === 0 ? 'from-blue-500 to-indigo-600' : 'from-purple-500 to-pink-600'} shadow-lg`}>
                                         <stat.icon className="w-10 h-10 text-white" />
                                     </div>
@@ -111,20 +175,12 @@ const AboutUsPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/50 to-transparent" />
                     <div className="max-w-7xl mx-auto px-6 relative">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl lg:text-5xl font-black mb-4">
-                                The Zoomdrive Promise
-                            </h2>
-                            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-medium">
-                                Three pillars that define every journey with us
-                            </p>
+                            <h2 className="text-4xl lg:text-5xl font-black mb-4">The Zoomdrive Promise</h2>
+                            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-medium">Three pillars that define every journey with us</p>
                         </div>
-
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                             {values.map((value, i) => (
-                                <div 
-                                    key={i}
-                                    className="group relative bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:-translate-y-3"
-                                >
+                                <div key={i} className="group relative bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-700 hover:-translate-y-3">
                                     <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-700`} />
                                     <div className="p-10 lg:p-12 text-center">
                                         <div className={`inline-flex p-6 rounded-3xl mb-6 bg-gradient-to-br ${value.gradient} shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
@@ -139,23 +195,65 @@ const AboutUsPage = () => {
                     </div>
                 </section>
 
+                {/* --- FULL WIDTH APP INSTALL SECTION --- */}
+                <section className="w-full bg-gray-900 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3" />
+
+                    <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32 relative">
+                        <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
+                            <div className="inline-flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20 backdrop-blur-md">
+                                <Smartphone className="w-4 h-4 text-blue-400" />
+                                <span className="text-blue-400 font-bold text-xs uppercase tracking-[0.2em]">Premium Mobile Experience</span>
+                            </div>
+
+                            <h2 className="text-4xl lg:text-6xl font-black text-white leading-tight">ZoomDrive in Your Pocket.</h2>
+
+                            <p className="text-gray-400 text-lg lg:text-xl font-medium leading-relaxed">
+                                Install our official web app for the fastest booking experience yet. 
+                                Enjoy real-time fleet updates, instant car tracking, and 
+                                <span className="text-blue-400"> exclusive member-only pricing</span> directly from your home screen.
+                            </p>
+
+                            <div className="flex flex-wrap justify-center gap-6 lg:gap-12 py-4">
+                                {[
+                                    { icon: Layout, text: "Native Interface" },
+                                    { icon: Bolt, text: "Ultra-Fast Load" },
+                                    { icon: ShieldCheck, text: "Secure Access" }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="flex items-center gap-3 text-gray-200 font-bold">
+                                        <div className="bg-blue-600/20 p-2 rounded-lg">
+                                            <item.icon className="w-5 h-5 text-blue-500" />
+                                        </div>
+                                        <span className="text-sm tracking-wide">{item.text}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="pt-8 w-full flex flex-col items-center gap-4">
+                                <button onClick={handleInstall} className="group relative bg-blue-600 hover:bg-blue-500 text-white px-12 py-6 rounded-2xl font-black text-xl transition-all transform hover:scale-105 flex items-center gap-4 shadow-[0_20px_50px_rgba(37,99,235,0.3)]">
+                                    <Download className="w-6 h-6 group-hover:animate-bounce" />
+                                    {isVisible ? 'Install ZoomDrive App' : 'App Status: Ready'}
+                                </button>
+                                {!isVisible ? (
+                                    <p className="text-gray-500 text-xs font-bold uppercase tracking-widest animate-pulse">App already installed or using an unsupported browser</p>
+                                ) : (
+                                    <p className="text-blue-400/60 text-xs font-bold uppercase tracking-widest">Available on iOS, Android, and Desktop</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* Final CTA */}
                 <section className="py-24 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/20" />
                     <div className="relative max-w-4xl mx-auto text-center px-6">
-                        <h2 className="text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
-                            Ready to Drive the Future?
-                        </h2>
-                        <p className="text-lg text-white/90 mb-10 max-w-2xl mx-auto">
-                            Join thousands who’ve already discovered the Zoomdrive difference.
-                        </p>
+                        <h2 className="text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">Ready to Drive the Future?</h2>
+                        <p className="text-lg text-white/90 mb-10 max-w-2xl mx-auto">Join thousands who’ve already discovered the Zoomdrive difference.</p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <Link  to ="/signup"className="bg-white text-blue-600 px-12 py-5 rounded-full font-bold text-lg shadow-2xl hover:scale-110 transition-all duration-300 transform">
-                                Start Your Journey
-                            </Link>
-                            <Link  to="/fleet" className="bg-white/20 backdrop-blur-md border-2 border-white/50 text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-white/30 transition-all duration-300">
-                                View Full Fleet
-                            </Link>
+                            <Link to="/signup" className="bg-white text-blue-600 px-12 py-5 rounded-full font-bold text-lg shadow-2xl hover:scale-110 transition-all duration-300 transform">Start Your Journey</Link>
+                            <Link to="/fleet" className="bg-white/20 backdrop-blur-md border-2 border-white/50 text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-white/30 transition-all duration-300">View Full Fleet</Link>
                         </div>
                     </div>
                 </section>
