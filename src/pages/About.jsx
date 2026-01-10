@@ -44,26 +44,6 @@ const AboutUsPage = () => {
         <>
             <PremiumNavbar />
 
-            {/* FLOATING INSTALL NOTIFICATION */}
-            {isVisible && (
-                <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-md animate-bounce">
-                    <div className="bg-white/80 backdrop-blur-2xl border border-blue-200 p-4 rounded-3xl shadow-[0_20px_50px_rgba(37,99,235,0.3)] flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                            <div className="bg-blue-600 p-2 rounded-2xl shadow-lg">
-                                <Smartphone className="w-5 h-5 text-white" />
-                            </div>
-                            <div>
-                                <p className="text-sm font-black text-gray-900 leading-none">Get ZoomDrive App</p>
-                                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1">Faster booking & tracking</p>
-                            </div>
-                        </div>
-                        <div className="bg-gray-900/50 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto text-center">
-                            <h3 className="text-2xl font-bold text-white mb-6">Get the Full ZoomDrive Experience</h3>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative py-20 lg:py-28 overflow-hidden">
