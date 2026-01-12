@@ -735,7 +735,7 @@ const DashboardView = ({ authToken, adminName }) => {
     useEffect(() => {
         const fetchInventory = async () => {
             try {
-                const response = await fetch('http://localhost:5000/users/getCar', {
+                const response = await fetch('https://zoomdrive-backend.onrender.com/users/getCar', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -855,7 +855,7 @@ const App = () => {
     useEffect(() => {
         const fetchAdminData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/users/admin/dashboard', {
+                const response = await fetch('https://zoomdrive-backend.onrender.com/users/admin/dashboard', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -912,14 +912,12 @@ const App = () => {
                 .font-sans { font-family: 'Inter', sans-serif; }
             `}</style>
 
-                {/* --- Mobile Sidebar Overlay --- */}
+                
                 <div
                     className={`fixed inset-0 bg-black bg-opacity-50 z-30 transition-opacity duration-300 
                 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                     onClick={() => setIsSidebarOpen(false)}
                 ></div>
-
-                {/* --- Sidebar --- */}
                 <div
                     className={`fixed top-0 left-0 h-screen w-64 bg-gray-900 text-white p-5 space-y-6 flex flex-col z-40 transition-transform duration-300 transform
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 

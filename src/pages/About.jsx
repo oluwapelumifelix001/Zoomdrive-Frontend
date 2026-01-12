@@ -45,7 +45,7 @@ const AboutUsPage = () => {
             <PremiumNavbar />
 
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
-                {/* Hero Section */}
+            
                 <section className="relative py-20 lg:py-28 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10" />
                     <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
